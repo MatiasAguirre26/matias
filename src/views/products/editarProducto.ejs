@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head',{tittle:"Editar Producto"})%> 
+<body>
+    <%- include('../partials/header')  %> 
+
+    <main class="agregar-container">
+        
+            <form action="/products/edit/<%=product.id %>?_method=PUT" method="POST" class="formAdd" enctype="multipart/form-data" id="form-productEdit">
+        
+            <h2>Editar Producto  <b><%= product.name %></b></h2>
+
+            <p>Titulo del producto</p>
+            <input type="text" name="nombre" value="<%= locals.oldData ? oldData.nombre : product.name %>" id="nameEP">
+            
+            <div id="name-error">
+            <% if (locals.errors && errors.nombre) { %>
+                <p class="mensajesError"><%= errors.nombre.msg %> </p>
+            <% } %>
+            </div>
+
+            <p>Precio</p>
+            <input type="text" name="precio"value="<%= product.price %>">
+
+            <p>Descripcion</p>
+            <textarea name="descripcion" id="descriptionEP" cols="30" rows="5" ><%=locals.oldData ? oldData.descripcion : product.description %></textarea>
+            <div id="description-error">
+                <% if (locals.errors && errors.descripcion) { %>
+                    <p class="mensajesError"><%= errors.descripcion.msg %></p>
+                <% } %>
+            </div>
+
+
+            <p>Stock Minimo</p>
+            <input type="text" name="stockMin" value="<%= product.stock_min %>">
+
+            <p>Stock Maximo</p>
+            <input type="text" name="stockMax" value="<%= product.stock_max %>">
+
+            <p>Categoria</p>
+            <select name="categoria">
+                <option value="0" disabled>- Seleccione una categoria - </option>
+                    <% allCategories.forEach(category => { %>
+                    <option value="<%= category.id %>"<% if (product.categories_id == category.id) { %> <%= 'selected' %><% }; %>><%= category.name %></option>
+                    <% }); %>
+            </select>            
+        
+            <p>Estado</p>
+            <select name="estado">
+                <option value="0" disabled>- Seleccione un estado - </option>
+                <% allStates.forEach(state => { %>
+                <option value="<%= state.id %>"<% if (product.states_id == state.id) { %> <%= 'selected' %><% }; %>><%= state.type %></option>
+                <% }); %>
+            </select>
+
+            <p>Editorial</p>
+            <select name="editorial">
+                <option value="0" disabled>- Seleccione una editorial - </option>
+                <% allEditorials.forEach(editorial => { %>
+                <option value="<%= editorial.id %>"<% if (product.editorials_id == editorial.id) { %> <%= 'selected' %><% }; %>><%= editorial.name %></option>
+                <% }); %>
+            </select>
+
+            <p>Formato</p>
+            <select name="formato">
+                <option value="0" disabled>- Seleccione un formato - </option>
+                <% allSizes.forEach(size => { %>
+                <option value="<%= size.id %>"<% if (product.sizes_id == size.id) { %> <%= 'selected' %><% }; %>><%= size.format %></option>
+                <% }); %>
+            </select>
+
+            <p>Detalles</p>
+            <select name="detail">
+                <option value="0" disabled>- Seleccione un detalle - </option>
+                <% allDetails.forEach(detail => { %>
+                <option value="<%= detail.id %>"<% if (product.details_id == detail.id) { %> <%= 'selected' %><% }; %>><%= detail.type %></option>
+                <% }); %>
+            </select>
+
+            <p>Imagen de portada</p>
+                
+            <input type="file" name="image" id="imageEP">
+            <div id="image-error">
+            <% if (locals.errors && errors.image) { %>
+                    <p class="mensajesError"><%= errors.image.msg%></p> 
+                <% } %>
+            </div>
+            
+            <div class="botones-agregar">
+                <input type="submit" value="Actualizar">
+            </div>
+            
+            
+        </form>
+    </main>
+
+    <%- include('../partials/footer')  %> 
+    <script src="/js/validationEditProduct.js"></script>
+</body>
+</html>

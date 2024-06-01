@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head',{tittle:"Inicio"}) %>
+    <body>
+        <!--ENCABEZADO-->
+        <%- include('../partials/header') %>
+
+        <!--CAROUSEL-->
+        <div class="carousel-container">
+            <div class="wrapper">
+                <div class="carousel">
+                    <div class="inner">
+                        <div class="slide active"></div>
+                        <div class="slide"></div>
+                        <div class="slide"></div>
+                    </div>
+                    <div class="arrow arrow-left"></div>
+                    <div class="arrow arrow-right"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--SECCION DE TARJETAS-INFO PARA COMPRAR-->
+        <div class="contenedor_tarjetas">
+            <div class="tarjeta-info-compra">
+                <i class="fas fa-truck iconos-envios-pago-descuentos"></i>
+                <h3 class="text-tarjetas">Envío gratis a todo el pais superiores a $2500</h3>
+            </div>
+            <div class="tarjeta-info-compra">
+                <i class="fas fa-credit-card iconos-envios-pago-descuentos"></i>
+                <h3 class="text-tarjetas">Varios metodos de pago</h3>
+            </div>
+            <div class="tarjeta-info-compra">
+                <i class="fas fa-tags iconos-envios-pago-descuentos"></i>
+                <h3 class="text-tarjetas">Descuentos en compras superiores a $5000</h3>
+            </div>
+        </div>
+
+        <!--SECCION DE PRODUCTOS-->
+        <main class="index-img">
+            
+            <h2>NOVEDADES</h2>
+            <section class="Productos-relacionados contenedor-grid">
+                <%- include('../partials/productos') %>
+            </section>    
+        </main>
+
+        <!--Seccion de Marcas-->
+        <div class="contenedor_marcas">
+            <h1 id="h1_marca">Marcas</h1>
+            <div class="row_marcas">
+                <div class="col_marcas">
+                    <img src="/images/DC_logo.png" alt="">
+                    <img src="/images/Marvel_logo.png" alt="">
+                    <img src="/images/IDW_logo.jpg" alt="">
+                    <img src="/images/Norma_Editorial.svg" alt="">
+                    <img src="/images/Dark_Horse_Comics_logo.png" alt="">
+                    <img src="/images/utopia_editorial_logo.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <!--PIE DE PAGINA-->
+        <%- include('../partials/footer') %>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/js/carousel.js"></script>
+    </body>
+</html>

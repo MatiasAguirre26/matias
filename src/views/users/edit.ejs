@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('../partials/head',{tittle:"Editar Perfil"})%>
+  
+  <body>
+
+    <%- include('../partials/header') %>
+
+    <main class="agregar-container">
+
+      <form action="/users/edit/<%= user.id %>?_method=PUT" method="POST" class="formAdd formEditUser" enctype="multipart/form-data">
+        <h2>Edición de perfil</h2>
+       
+            <p>Nombre</p>
+            <input type="text" name="name" value="<%= user.first_name%>">
+            <% if (locals.errors && errors.name) { %>
+              <div class="mensajesError"><%= errors.name.msg %></div>
+            <% } %>
+            <p>Apellido</p>
+            <input type="text" name="lastName" value="<%=user.last_name %>"
+            <% if (locals.errors && errors.Apellido) { %>
+              <div class="mensajesError"><%= errors.Apellido.msg %></div>
+            <%}%>
+            <p>Email</p>
+            <input type="email" name="email" value="<%= user.email%>">
+            <% if (locals.errors && errors.email) { %>
+              <div class="mensajesError"><%= errors.email.msg %></div>
+            <% } %>
+            <p>Avatar</p>
+            <input type="file" name="image">
+            <% if (locals.errors && errors.image) { %>
+              <div class="mensajesError"><%= errors.image.msg %></div>
+            <%}%>
+      
+            <div class="botones-agregar">
+              <input type="submit" value="Editar">
+          </div>
+      </form>
+    </main>
+
+    <%- include('../partials/footer') %>
+
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\..\\grupo_1-ventas-TFA-main"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\DePc\\empujarBase"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\DePc\\ecommercezapatillas"
+		},
+		{
+			"path": "..\\..\\..\\..\\express-validator-master"
+		},
+		{
+			"path": "..\\..\\.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "clase1"
+	}
+}

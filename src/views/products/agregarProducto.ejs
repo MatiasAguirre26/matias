@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head',{tittle:"Crear producto"})%> <%-
+  include('../partials/head',{tittle:"Agregar Producto"}) %>
+  <body>
+    <%- include('../partials/header') %>
+
+    <main class="agregar-container">
+      <form
+        action="/products/storeProduct"
+        enctype="multipart/form-data"
+        method="POST"
+        class="formAdd"
+        id="form-productNew"
+      >
+        <h2>Agregar Producto</h2>
+        <p>Titulo del producto</p>
+        <input
+          type="text"
+          name="nombre"
+          placeholder="Nombre del libro, manga o comic"
+          id="nameEP"
+        />
+        <div id="name-error">
+          <% if (locals.errors && errors.nombre) { %>
+          <p class="mensajesError"><%= errors.nombre.msg %></p>
+          <% } %>
+        </div>
+        <p>Stock Minimo</p>
+        <input type="number" name="stockMin" id="" />
+        <p>Stock Maximo</p>
+        <input type="number" name="stockMax" id="" />
+        <p>Precio</p>
+        <input type="number" name="precio" placeholder="$000000" />
+        <p>Descripcion</p>
+        <textarea
+          name="descripcion"
+          id="descriptionEP"
+          cols="30"
+          rows="5"
+        ></textarea>
+        <div id="description-error">
+          <% if (locals.errors && errors.descripcion) { %>
+          <p class="mensajesError"><%= errors.descripcion.msg %></p>
+          <% } %>
+        </div>
+
+        <p>Categoria</p>
+        <select name="categoria">
+          <% allCategories.forEach(categorie => { %>
+          <option value="<%= categorie.id %> "><%= categorie.name %></option>
+          <% }) %>
+        </select>
+
+        <p>Editorial</p>
+        <select name="editorial">
+          <% allEditorials.forEach( editorial=> { %>
+          <option value="<%= editorial.id %> "><%= editorial.name %></option>
+          <% }) %>
+        </select>
+
+        <p>Estado</p>
+        <select name="estado">
+          <% allStates.forEach(state => { %>
+          <option value="<%= state.id %> "><%= state.type %></option>
+          <% }) %>
+        </select>
+
+        <p>Formato</p>
+        <select name="formato" id="">
+          <% allSizes.forEach(size => { %>
+          <option value="<%= size.id %> "><%= size.format %></option>
+          <% }) %>
+        </select>
+
+        <p>Detalles</p>
+        <select name="detail" id="">
+          <% allDetails.forEach(detail => { %>
+          <option value="<%= detail.id %> "><%= detail.type %></option>
+          <% }) %>
+        </select>
+        <p>Portada</p>
+
+        <input
+          type="file"
+          id="imageEP"
+          name="portada"
+          
+        />
+        <div id="image-error">
+          <% if (locals.errors && errors.image) { %>
+          <p class="mensajesError"><%= errors.image.msg%></p>
+          <% } %>
+        </div>
+
+        <div class="botones-agregar">
+          <input type="submit" value="Agregar" />
+        </div>
+      </form>
+    </main>
+
+    <%- include('../partials/footer') %>
+    <script src="/js/validationNewProduct.js"></script>
+  </body>
+</html>

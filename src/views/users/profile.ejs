@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <%- include('../partials/head',{tittle:"Mi Perfil"}) %>
+
+  <body class="body-login">
+    <%- include('../partials/header') %>
+
+    <main class="main-profile">
+      <div class="profile-container">
+        <div class="profile-info-container">
+          <h1 class="user-name"><%= locals.userLoged.first_name %></h1>
+          <h1 class="user-lastname"><%= locals.userLoged.last_name %></h1>
+          <div class="user-image">
+            <div class="user-avatar">
+              <img
+                src="/images/avatars/<%= locals.userLoged.avatar %>"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div class="user-data">
+            <p class="user-email">Email: <%= locals.userLoged.email %></p>
+            <p class="user-type">
+              <% if (locals.userLoged.roles_id == 1) { %>
+                Rol : Administrador
+              <% } else { %>
+
+                Rol : Usuario
+              <% }%>
+            </p>
+          </div>
+
+          <a href="../users/edit/<%= locals.userLoged.id %> " class="edit-user">Editar Perfil</a>
+        </div>
+        <div class="image-container">
+          <p>Productos adquiridos:</p>
+        </div>
+      </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+   
+  </body>
+</html>

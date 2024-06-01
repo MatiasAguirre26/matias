@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head',{tittle:"Registro"}) %>
+  <body>
+    <%- include('../partials/header') %>
+    <main class="main-register">
+
+      <h2 class="titulo-registro" >CREAR CUENTA</h2>
+      <p class="parrafo-register">Comprá más rápido y llevá el control de tus pedidos,<b>¡en un solo lugar!</b></p>
+
+      <form class="form-register" id="formulario" action="/users/register"  method= "POST" enctype="multipart/form-data">
+        
+        <!-- Formulario-Nombre -->
+        <div class="form-grupo" id="grupo__usuario">
+          <label for="name" class="formulario__label">Nombre</label>
+          <div class="form__grupo-input">
+            <input type="text" class ="form__input" name="name" 
+            value="<%= locals.oldData ? oldData.name : null%>" id="name" placeholder="Ej:Jhonatan">
+            <i class="form__validacion-estado fa-solid fa-circle-xmark"></i>
+          </div> 
+            <p class="formulario__input-error">Solo puedes ingresar de 4 a 16 dígitos y unicamente puede contener letras.</p>
+                  <% if (locals.errors && errors.name) { %>
+              <div class="mensajesError">
+                  <%= errors.name.msg %> 
+              </div>
+            <% } %>  
+        </div>
+
+        <!-- Formulario-Apellido -->
+
+        <div class="form-grupo" id="grupo__lastName">
+          <label for="lastName" class="formulario__label">Apellido</label>
+          <div class="form__grupo-input">
+            <input type="text" class ="form__input" name="lastName" value ="<%= locals.oldData ? oldData.lastName : null %>" placeholder="Ej: Fulguera"/> 
+            <i class="form__validacion-estado fa-solid fa-circle-xmark"></i>
+          </div> 
+          <p class="formulario__input-error">Solo puedes ingresar de 4 a 16 dígitos y unicamente puede contener letras.</p> 
+            <% if (locals.errors && errors.lastName) { %>
+              <div class="mensajesError">
+                  <%= errors.lastName.msg %> 
+              </div>
+            <% } %>
+        </div>
+
+        <!-- Formulario-Telefono -->
+
+        <div class="form-grupo" id="grupo__telefono">
+          <label for="telefono" class="formulario__label">Telefono</label>
+          <div class="form__grupo-input">
+            <input type="text" class ="form__input" name="telefono" id="telefono" placeholder="34344856"/> 
+            <i class="form__validacion-estado fa-solid fa-circle-xmark"></i>
+          </div>
+          <p class="formulario__input-error">El telefono solo puede contener numeros.</p>  
+        </div>
+
+            <!-- Formulario E-MAIL-->
+
+            <div class="form-grupo" id="grupo__correo">
+              <label for="email" class="formulario__label">CORREO</label>
+              <div class="form__grupo-input">
+                <input type="email" class ="form__input" name="email" value="<%= locals.oldData ? oldData.email : null%> " placeholder="E-mail"/>
+                <i class="form__validacion-estado fa-solid fa-circle-xmark"></i>  
+              </div>
+              <p class="formulario__input-error">El formato del Email debe cumplir el patrón: nombre@dominio.xxx.</p>   
+                <% if (locals.errors && errors.email) { %>
+                      <div class="mensajesError">
+                  <%= errors.email.msg %> 
+                      </div>
+                  <% } %>
+            </div>
+            
+            <!-- Formulario-password -->
+
+        <div class="form-grupo" id="grupo__password">
+          <label for="password" class="formulario__label">Contraseña</label>
+          <div class="form__grupo-input">
+            <input type="password" class ="form__input" name="password" 
+            value="<%= locals.oldData ? oldData.name : null%>" id="password">
+            <i class="form__validacion-estado fa-solid fa-circle-xmark"></i>
+          </div>
+          <p class="formulario__input-error">Nueva contraseña no puede estar vacío y debe tener 8 caracteres, almenos una letra mayuscula.</p> 
+            <% if (locals.errors && errors.password) { %>
+              <div class="mensajesError">
+                  <%= errors.password.msg %> 
+              </div>
+            <% } %>
+        </div>
+
+        <!-- Formulario-Repetir password -->
+
+        <div class="form-grupo" id="grupo__passwordConfirm">
+          <label for="passwordConfirm" class="formulario__label">Confirmar Contraseña</label>
+          <div class="form__grupo-input">
+            <input type="password" class ="form__input" name="passwordConfirm" 
+            value="<%= locals.oldData ? oldData.name : null%>" id="passwordConfirm">
+            <i class="form__validacion-estado fa-solid fa-circle-xmark"></i>
+          </div> 
+            <% if (locals.errors && errors.passwordConfirm) { %>
+              <div class="mensajesError">
+                  <%= errors.passwordConfirm.msg %> 
+              </div>
+            <% } %> 
+        </div>
+
+        <!-- Formulario-Subir imagen-->
+
+        <div id="grupo_File">
+          <label for="">Subir Imagen</label>
+          <input type="file" name="image" class="avatar">
+          <p  class="formulario__input-error">Las extenciones de archivo permitidas son: JPG, jpg, png, gif, jpeg, JPEG, PNG, GIF</p>
+          <% if (locals.errors && errors.image) { %>
+            <div class="mensajesError">
+              <%= errors.image.msg %>
+            </div>
+          <% } %>
+        </div>
+
+        <!-- Formulario-Terminos y condiciones -->
+        <div class="form__grupo" id="grupo__terminos">
+          <label class="form__label">
+            <input type="checkbox" class="form__checkbox" id="terminos" name="terminos">
+            Acepta los Terminos y Condiciones. 
+          </label>
+        </div>
+
+        <div class="form__mensaje" id="form__mensaje">
+          <p><i class="fas fa-exclamation-triangle"></i><b>ERROR!</b>Complete el Formulario !</p>
+        </div>
+        
+        <div class="form__grupo form__grupo-btn-enviar" >
+          <button type="submit" class="form__btn" id="form__btn">Registrarme</button>
+          <p class="form__mensaje-exito" id="form__mensaje-exito">Formulario enviado exitosamente!</p>
+        </div>
+        
+      </form>
+    </main>
+    <script src="/js/formRegister.js"></script>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

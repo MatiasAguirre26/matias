@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: my-node-app
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node app.js
+    envVars:
+      - key: DB_USERNAME
+        value: poys9aqyb0puclms
+      - key: DB_PASSWORD
+        value: w96v0t69fos13xb3
+      - key: DB_HOST
+        value: dcrhg4kh56j13bnu.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+      - key: DB_DATABASE
+        value: amlut7mknd70dz9q
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_DIALECT
+        value: mysql

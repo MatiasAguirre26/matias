@@ -1,0 +1,40 @@
+<% for( let i =0; i < products.length; i++ ) { %>
+    <article>
+    <a href="/products/detailProduct/<%= products[i].id %> ">
+        <% for( let j = 0; j < products[i].images.length; j++ ) { %>
+            <img src="/images/products/<%= products[i].images[j].name %> " alt="portada<%= products[i].name %> ">
+        <% } %>
+    </a>
+    <div class="main-product">
+        
+        <h3><%= products[i].name%></h3>
+        <p>$<%= products[i].price %> </p>
+        <% if (locals.userLoged) { %>
+            <% if (locals.userLoged.roles_id == 1) { %>
+                
+            <% } %>
+        <% }else{ %>
+                <div class="agregarCarrito">
+                    <input type="submit" class="btn2" value="Agregar carrito">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+            <% } %>
+            <% if (locals.userLoged) { %>
+                <% if (locals.userLoged.roles_id ==  1) { %>
+                    <div class="boton-delate">
+                        <a href="/products/edit/<%= products[i].id %> " class="action-button-edit">EDITAR</a>
+                                <form action="/products/delete/<%= products[i].id %>" method="POST" style="display: inline-flex">
+                                    <button type="submit" class="action-button-delete">ELIMINAR</button>
+                                </form>
+                        </div>
+                <% }else{ %>
+                    <div class="agregarCarrito">
+                        <input type="submit" class="btn2" value="Agregar carrito">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                <% } %>
+            <% } %>
+        </form>
+    </div>
+</article>
+<% } %>

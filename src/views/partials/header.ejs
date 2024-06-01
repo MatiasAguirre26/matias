@@ -1,0 +1,90 @@
+<header>
+
+  <section class="top-header">
+    <nav class="menu-oculto">
+      <ul class="opciones-menu">
+        <li><a href="/products/getProducts/mangas">Mangas</a></li>
+        <li><a href="/products/getProducts/comics">Comics</a></li>
+        <li><a href="/products/getProducts/libros">Libros</a></li>
+        <li><a href="#">Merchandising</a></li>
+      </ul>
+      <% if (locals.isLogged) { %>
+      <div class="perfilFull">
+        <div class="perfil">        
+        <img src="/images/avatars/<%= locals.userLoged.avatar %>" alt="">
+        <p><%= locals.userLoged.first_name %></p>
+        <i class="fas fa-angle-down"></i>
+      </div>
+      <div class="perfilOpciones">
+        <ul>
+          <li><a href="/users/profile">Mi perfil</a></li>
+          <li><a href="/products/createProduct">Crear Producto</a></li>
+          <li><a href="/users/logout">Cerrar Sesion</a></li>
+        </ul>
+      </div>
+      </div>
+      
+      <!-- <a class="session-out" href="/users/logout"
+        ><i class="fas fa-sign-out-alt"></i
+      ></a> -->
+      <% }else{ %>
+      <ul class="logeo-menu">
+        <li>
+          <a href="/users/register" class="estilos-register">Creá tu cuenta</a>
+        </li>
+        <li><a href="/users/login" class="estilos-login">Inicia sesión</a></li>
+      </ul>
+
+      <% } %>
+    </nav>
+    <div class="menu">
+      <i class="fa fa-bars burger"></i>
+    </div>
+    <div class="logo">
+      <a href="/"><img src="/images/BookBuster-Logo.svg" alt="Logo" /></a>
+    </div>
+    <div class="carrito">
+      <a href="/products/cart"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+  </section>
+
+  <div class="burgerMenuHide">
+    
+    <ul>
+      <li><a href="/">Inicio</a><i class="fas fa-times" id="closeBurgerMenu"></i></li>
+      <p>Productos</p>
+      <li><a href="/products/getProducts/mangas">Mangas</a></li>
+      <li><a href="/products/getProducts/comics">Comics</a></li>
+      <li><a href="/products/getProducts/libros">Libros</a></li>
+      <p>User</p>
+      <% if (locals.isLogged) { %>
+        <li><a href="/users/profile">Mi Perfil</a></li>
+        <li><a href="/users/logout">Cerrar Sesion</a></li>
+        
+        <% if (locals.userLoged.roles_id==1) { %>
+          <li> <a href="/products/createProduct">Crear Producto</a></li>
+        <% } %>
+      <% }else{ %>
+        <li><a href="/users/login">Iniciar Sesion</a></li>
+        <li><a href="/users/register">Registrarse</a></li>
+            
+      <% } %>
+    </ul>
+  </div>
+
+  <div class="barra-busqueda">
+    <form action="/products/search" method="get" class="form-search">
+      <input
+        type="text"
+        placeholder="Buscar Libros por palabra clave / titulo / autor / ISBN"
+        name="searchbar"
+        required
+      />
+      <button class="btn" type="submit">
+        <i class="fab fa-sistrix"></i>
+      </button>
+    </form>
+  </div>
+
+  <script src="/js/functions/functionHeader.js"></script>
+</header>
